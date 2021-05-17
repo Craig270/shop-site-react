@@ -6,7 +6,7 @@ function ContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([]);
 
   const url =
-    "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json";
+    "https://raw.githubusercontent.com/Craig270/shop-site-react/main/src/components/PhotoBucket.json";
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
