@@ -4,6 +4,7 @@ const Context = React.createContext();
 
 function ContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const url =
     "https://raw.githubusercontent.com/Craig270/shop-site-react/main/src/components/PhotoBucket.json";
@@ -30,8 +31,14 @@ function ContextProvider({ children }) {
 
   console.log(allPhotos);
 
+  function addToCart(newItem) {
+    setCartItems((prevItems) => [...prevItems, newItem]);
+  }
+
+  console.log(cartItems);
+
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>
       {children}
     </Context.Provider>
   );
