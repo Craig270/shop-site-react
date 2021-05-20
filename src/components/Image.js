@@ -5,7 +5,7 @@ function Image({ className, img }) {
   // console.log("This is image being called");
   const [hovered, setHovered] = useState(false);
   //   console.log(hovered);
-  const { toggleFavorite, addToCart } = useContext(Context);
+  const { toggleFavorite, addToCart, cartItems } = useContext(Context);
 
   function heartIcon() {
     if (img.isFavorite) {
@@ -26,6 +26,17 @@ function Image({ className, img }) {
   }
 
   function cartIcon() {
+    const alreadyInCart = cartItems.some((item) => item.id === img.id);
+    if (alreadyInCart) {
+      return <i className="ri-shopping-cart-fill cart"></i>;
+    } else if (hovered) {
+      return (
+        <i
+          className="ri-add-circle-line cart"
+          onClick={() => addToCart(img)}
+        ></i>
+      );
+    }
     // if the item is already in the cart
     // return <i className="ri-shopping-cart-fill cart"></i>
     // else if the image is being hovered
